@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<title>
+My JS Headcounter
+</title>
+<script>
+    function render(fld, msg)
+    {
+        alert(msg);
+    }
+    
+    function add(fld)
+    {
+        val = document.getElementById(fld).value;
+        val = parseInt(val);
+        if (isNaN(val)) {
+            val = 0;
+        }
+        val += 1;
+        document.getElementById(fld).value = val;
+    }
+    
+     function subtract(fld)
+    {
+        val = document.getElementById(fld).value;
+        val = parseInt(val);
+        if (isNaN(val)) {
+            val = 0;
+        }
+        if (val > 0) {
+            val -= 1;
+            document.getElementById(fld).value = val;
+        }
+    }
+    
+    function update_total(fld_list)
+    {
+        val = 0;
+        for (i = 0; i < fld_list.length; i++) {
+            val += parseInt(fld_list[i].value);
+        }
+        document.getElementById('category_total').innerHTML = val;
+    }
+    
+    function PosNumOnly(fld, msg, allowEmpty)
+    {
+        var re = /[^0-9\.]/g;
+        
+        if (fld.value.replace(/\s/g,"") == "" && allowEmpty) {
+            return true;
+        }
+        if (isNaN(parseFloat(fld.value)) || !isFinite(fld.value) || fld.value < 0) {
+            alert(msg);
+            fld.value = fld.value.replace(re, '');
+            fld.value = fld.value.replace(/\./, '');
+            fld.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<style>
+body {min-height: 100%; min-width: 100%;}
+html {height: 100%; width: 100%;}
+form {width: 320px;}
+fieldset {width: 30%; margin: auto;}
+h1 {text-align: center;}
+</style>
+</head>
+    <body>
+        <h1>Headcounter with JS</h1>
+        <fieldset>
+        <legend>By Category</legend>
+            <form method="get" action="#" name="category_form">
+                <div class="category-div">
+                    <p class="category-label">Campus</p>
+                    <input type="text" name="campus" id="campus" value="0" onkeyup="return(PosNumOnly(this, 'Integers only.', 1));" onfocus="this.select()">
+                    <input value="+" name="+" type="button" onclick="add('campus');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                    <input value="-" name="-" type="button" onclick="subtract('campus');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                </div>
+               
+                <div class="category-div">
+                    <p class="category-label">YWA</p>
+                    <input type="text" name="ywa" id="ywa" value="0" onkeyup="return(PosNumOnly(this, 'Integers only.', 1));" onfocus="this.select()">
+                    <input value="+" name="+" type="button" onclick="add('ywa');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                    <input value="-" name="-" type="button" onclick="subtract('ywa');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                </div>
+                
+                <div class="category-div">
+                    <p class="category-label">Family</p>
+                    <input type="text" name="family" id="family" value="0" onkeyup="return(PosNumOnly(this, 'Integers only.', 1));" onfocus="this.select()">
+                    <input value="+" name="+" type="button" onclick="add('family');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                    <input value="-" name="-" type="button" onclick="subtract('family');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                </div>
+                
+                <div class="category-div">
+                    <p class="category-label">Teens</p>
+                    <input type="text" name="teens" id="teens" value="0" onkeyup="return(PosNumOnly(this, 'Integers only.', 1));" onfocus="this.select()">
+                    <input value="+" name="+" type="button" onclick="add('teens');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                    <input value="-" name="-" type="button" onclick="subtract('teens');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                </div>
+                
+                <div class="category-div">
+                    <p class="category-label">Kids</p>
+                    <input type="text" name="kids" id="kids" value="0" onkeyup="return(PosNumOnly(this, 'Integers only.', 1));" onfocus="this.select()">
+                    <input value="+" name="+" type="button" onclick="add('kids');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                    <input value="-" name="-" type="button" onclick="subtract('kids');
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);">
+                </div>
+                <br>
+                <p>Total: <span name="category_total" id="category_total">
+                </span></p>
+                
+                <script>
+                    update_total([
+                    category_form.campus,
+                    category_form.ywa,
+                    category_form.family,
+                    category_form.teens,
+                    category_form.kids,
+                    ]);
+                </script>
+            </form>
+        </fieldset>
+    </body>
+</html>
